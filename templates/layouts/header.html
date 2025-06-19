@@ -34,12 +34,13 @@
             <li>
                     <button id="btn_popup">
                         {% if request.session.client.profil_image %}
-                            {% if profil %}
+                            {% if profil == request.session.client.profil_image %}
                                 <img src="{{ profil.images.url }}" alt="" width="50"  style="border-radius: 100%;background-color: red;height: 50px;">
                             {% else %}
-                                <img src="../{{ request.session.client.profil_image }}" alt="Profil" height="50" width="50" style="border-radius: 100%;">
+                                <img src="{{ request.session.client.profil_image }}" alt="Profil" height="40" width="40" style="border-radius: 100%;">
                             {% endif %}
                         {% else %}
+                            <img src="{{ request.session.client.profil_image }}" alt="Profil" height="50" width="50" style="border-radius: 100%;">
                         {% endif %}
                     </button>
                     
@@ -78,7 +79,7 @@
             </div>
         </ul>
     </nav>
-</header>
+</header> 
 {% else %}
     <header class="top-header" id="topHeader">
          <!-- <div>
@@ -92,10 +93,14 @@
                 </form>
             </div> -->
         <div class="container">
-            <h2 class="logo"><a href="{% url 'aff_accueil' %}">
-                <img src="{% static 'images/logo11.png' %}" alt="" class="logo_petit">
-            </a></h2>
-            <img src="{% static 'images/logo1.png' %}" width="200px" alt="" class="logo_grand">
+            <h2 class="logo">
+                <a href="{% url 'aff_accueil' %}">
+                    <img src="{% static 'images/logo11.png' %}" alt="" class="logo_petit">
+                </a>
+            </h2>
+            
+            <a href="{% url 'aff_accueil' %}"><img src="{% static 'images/logo1.png' %}" width="200px" alt="" class="logo_grand"></a>
+            
             <nav class="nav-buttons">
                 <a href="{% url 'aff_register' %}" class="btn inscrip" id="inscripBtn" style="display:none;">{% trans "Sign up" %}</a>
                 <a href="{% url 'aff_login' %}" class="btn connex">{% trans "Login" %}</a>
@@ -560,20 +565,20 @@
 @media (min-width: 768px) and (max-width: 1024px) {
     .pop_up {
         width: 32rem !important;
-        height: 78vh !important;
+        height: 45vh !important;
         position: absolute;
         top: 10vh;
-        left: -10rem !important;
+        left: -5rem !important;
         right: 0px;
     }
-        .pop_up.show {
+    .pop_up.show {
         opacity: 1;
         visibility: visible;
         transform: scale(1);
-        left: -20rem !important;
+        left: -14rem !important;
     }
 }
-@media (max-width:768px) {
+@media (max-width:767px) {
             .btn{
                 font-size: 15px;
                 height: 40px;
@@ -581,7 +586,7 @@
             }
             .nav-buttons a{
                 margin-left: 6rem;
-                padding: 10px 20px !important;
+                padding: 10px 0px !important;
             }
             .top-header h2{
                 display: block;
@@ -662,7 +667,7 @@
         }
         }
         /* Styles spécifiques tablettes */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 767px) and (max-width: 1024px) {
     .site-header {
         padding: 0.8rem;
         position: fixed;
@@ -711,7 +716,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
         .dropdown-langue-content {
             min-width: 90vw;
             left: 50%;
@@ -729,7 +734,7 @@
         }
 
         /* Styles spécifiques tablettes */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 767px) and (max-width: 1024px) {
     .site-header {
         padding: 0.8rem;
         position: fixed;
@@ -779,7 +784,7 @@
 }
 
 /* Keep existing mobile styles unchanged */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .logo_petit {
         display: block; /* Affiche sur mobile */
         width: 55px;

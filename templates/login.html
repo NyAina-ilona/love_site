@@ -9,13 +9,13 @@
     <a href="{% url 'aff_accueil' %}">
         <img src="{% static 'images/logo1.png' %}" alt="" style="width: 10rem;">
     </a>
-    <button><a href="{% url 'aff_register' %}">{% trans "inscription" %}</a></button>
+    <button><a href="{% url 'aff_register' %}">{% trans "S'inscrire" %}</a></button>
 </div>
 <section class="login-section" style="overflow-x: hidden;">
     <div class="login-container">
         <div class="login-form-container">
             {% if message %}
-              <h2 style="font-size:2vw;color:red">{{message}}</h2>
+              <h2 class="erreur">{{message}}</h2>
             {% endif %}
             <h2 class="login-title">{% trans "Connectez vous!" %}</h2>
             <form class="login-form" action="{% url 'connexion_membre' %}" method="post">
@@ -54,6 +54,10 @@
     </div>
 </section>
 <style>
+    .erreur{
+        font-size:2vw;
+        color:red"
+    }
     .btn-primary-con{
         width: 50%;
         height: 50px;
@@ -113,6 +117,10 @@
         display: none;
     }
     @media  (max-width:768px) {
+        .erreur{
+            font-size: 5vw !important;
+            width: 68%;
+        }
         .connex_tete{
             height: 75px;
         }

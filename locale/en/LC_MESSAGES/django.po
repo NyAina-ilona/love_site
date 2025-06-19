@@ -290,10 +290,6 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: .\templates\contact.html:27 .\templates\login.html:24
-#: .\templates\register.html:43
-msgid "Email"
-msgstr "Email"
 
 #: .\templates\contact.html:31 .\templates\detail_profil.html:44
 #: .\templates\detail_profil.html:47 .\templates\visitors_list.html:21
@@ -336,83 +332,71 @@ msgstr ""
 
 #: .\templates\detail_profil.html:92
 msgid "Vérification Faciale – Étape de Sécurité Obligatoire"
-msgstr ""
+msgstr "Facial Verification – Mandatory Security Step"
 
 #: .\templates\detail_profil.html:93
-msgid ""
-"Dans le souci de garantir l’authenticité des profils et d’assurer la "
-"sécurité de notre communauté, une vérification faciale unique est requise."
-msgstr ""
+msgid "Dans le souci de garantir l’authenticité des profils et d’assurer la sécurité de notre communauté, une vérification faciale unique est requise."
+msgstr "To ensure the authenticity of profiles and the safety of our community, a unique facial verification is required."
 
 #: .\templates\detail_profil.html:94
 msgid "Cette procédure, simple et rapide, est indispensable pour :"
-msgstr ""
+msgstr "This simple and quick procedure is essential for :"
 
 #: .\templates\detail_profil.html:96
 msgid "Confirmer que chaque profil correspond à une personne réelle."
-msgstr ""
+msgstr "Confirm that each profile matches a real person."
 
 #: .\templates\detail_profil.html:97
 msgid ""
-"Prévenir les faux comptes, les tentatives d’escroquerie et les comportements "
-"inappropriés."
-msgstr ""
+"Prévenir les faux comptes, les tentatives d’escroquerie et les comportements inappropriés."
+msgstr "Prevent fake accounts, scam attempts, and inappropriate behavior."
 
 #: .\templates\detail_profil.html:98
-msgid ""
-"Favoriser un environnement de rencontre fiable, respectueux et sécurisé."
-msgstr ""
+msgid "Favoriser un environnement de rencontre fiable, respectueux et sécurisé."
+msgstr "Promote a reliable, respectful, and secure dating environment."
 
 #: .\templates\detail_profil.html:100
-msgid ""
-"Avant de procéder à la vérification, merci de respecter les consignes "
-"suivantes :"
-msgstr ""
+msgid "Avant de procéder à la vérification, merci de respecter les consignes suivantes :"
+msgstr "Before proceeding with verification, please follow these instructions :"
 
 #: .\templates\detail_profil.html:102
 msgid "Installez-vous dans un endroit bien éclairé."
-msgstr ""
+msgstr "Sit in a well-lit place."
 
 #: .\templates\detail_profil.html:102
 msgid "Évitez les contre-jours ainsi que les pièces trop sombres."
-msgstr ""
+msgstr "Avoid backlighting and very dark rooms."
 
 #: .\templates\detail_profil.html:103
 msgid ""
-"Assurez-vous d’être seul(e) sur la photo.Aucune autre personne ne doit "
-"apparaître à l’image."
-msgstr ""
+"Assurez-vous d’être seul(e) sur la photo.Aucune autre personne ne doit apparaître à l’image."
+msgstr "Make sure you are alone in the photo. No other person should appear in the image."
 
 #: .\templates\detail_profil.html:104
 msgid ""
-"Veuillez dégager votre visage.Retirez tout accessoire susceptible de le "
-"dissimuler (lunettes de soleil, masque, couvre-chef, etc.)."
-msgstr ""
+"Veuillez dégager votre visage.Retirez tout accessoire susceptible de le dissimuler (lunettes de soleil, masque, couvre-chef, etc.)."
+msgstr "Please uncover your face. Remove any accessory that may hide it (sunglasses, mask, hat, etc.)."
 
 #: .\templates\detail_profil.html:105
 msgid ""
-"Adoptez une apparence naturelle, sans filtres ni effets visuels.L’objectif "
-"est de permettre une reconnaissance claire de votre visage."
-msgstr ""
+"Adoptez une apparence naturelle, sans filtres ni effets visuels.L’objectif est de permettre une reconnaissance claire de votre visage."
+msgstr "Adopt a natural appearance, without filters or visual effects. The goal is to allow clear recognition of your face."
 
 #: .\templates\detail_profil.html:106
 msgid ""
-"Regardez directement la caméra.Votre visage doit être centré et entièrement "
-"visible"
-msgstr ""
+"Regardez directement la caméra.Votre visage doit être centré et entièrement visible"
+msgstr "Look directly at the camera. Your face must be centered and fully visible."
 
 #: .\templates\detail_profil.html:110
 msgid ""
-"Votre profil sera identifié comme « Vérifié », renforçant ainsi la confiance "
-"auprès des autres membres."
-msgstr ""
+"Votre profil sera identifié comme « Vérifié », renforçant ainsi la confiance auprès des autres membres."
+msgstr "Your profile will be marked as 'Verified', thus increasing trust among other members."
 
 #: .\templates\detail_profil.html:111
 msgid ""
 "Vos données biométriques seront utilisées uniquement à des fins de "
-"vérification. Elles ne seront ni conservées au-delà du processus, ni "
-"partagées, conformément à notre [Politique de Confidentialité]"
-msgstr ""
+"vérification. Elles ne seront ni conservées au-delà du processus, ni partagées, conformément à notre [Politique de Confidentialité]"
+msgstr "Your biometric data will only be used for verification purposes. They will not be kept beyond the process, nor shared, in accordance with our [Privacy Policy]"
 
 #: .\templates\detail_profil.html:114
 msgid "Quit"
@@ -491,8 +475,8 @@ msgid "Description"
 msgstr "Description"
 
 #: .\templates\detail_profil.html:159
-msgid "About you:"
-msgstr "About you:"
+msgid "About:"
+msgstr "About:"
 
 #: .\templates\detail_profil.html:160
 msgid "About the person sought:"
@@ -537,6 +521,9 @@ msgstr "Education level:"
 #: .\templates\detail_profil.html:177 .\templates\mon_profil.html:639
 msgid "Religion:"
 msgstr "Religion:"
+
+msgid "Mode de Vie"
+msgstr "Lifestyle"
 
 #: .\templates\detail_profil.html:178
 msgid "Astrological sign:"
@@ -751,11 +738,11 @@ msgid "Login"
 msgstr "Login"
 
 #: .\templates\login.html:4
-msgid "Connexion"
+msgid "Se Connecter"
 msgstr "Login"
 
 #: .\templates\login.html:12
-msgid "inscription"
+msgid "S'inscrire"
 msgstr "Sign up"
 
 #: .\templates\login.html:20
@@ -770,9 +757,7 @@ msgstr "Password"
 msgid "Mot de passe oublié ?"
 msgstr "Forgot password?"
 
-#: .\templates\login.html:37
-msgid "Se Connecter"
-msgstr "Log in"
+
 
 #: .\templates\login.html:40
 msgid "Je n'ai pas de compte"
@@ -1126,15 +1111,15 @@ msgstr "Request sent at %(timestamp)s"
 
 #: .\templates\mon_profil.html:574
 msgid "en ligne"
-msgstr ""
+msgstr "online"
 
 #: .\templates\mon_profil.html:579
 msgid "Photo"
-msgstr ""
+msgstr "Photo"
 
 #: .\templates\mon_profil.html:602
 msgid "Ajouter"
-msgstr ""
+msgstr "Add"
 
 #: .\templates\mon_profil.html:607
 msgid "Informations du Profil"
@@ -1142,59 +1127,56 @@ msgstr "Profile Information."
 
 #: .\templates\mon_profil.html:610
 msgid "Apparence"
-msgstr ""
+msgstr "Appearance"
 
 #: .\templates\mon_profil.html:611
 msgid "Couleur des Yeux:"
-msgstr ""
+msgstr "Eye color:"
 
 #: .\templates\mon_profil.html:612
 msgid "Couleur des Cheveux:"
-msgstr ""
+msgstr "Hair color"
 
 #: .\templates\mon_profil.html:613
 msgid "Taille:"
-msgstr ""
+msgstr "Height"
+
+#: .\templates\mon_profil.html
+msgid "Taille (cm):"
+msgstr "Height (cm)"
 
 #: .\templates\mon_profil.html:614
 msgid "Poids:"
-msgstr ""
+msgstr "Weight:"
 
-#: .\templates\mon_profil.html:617
-#, fuzzy
-#| msgid "Mot de passe"
-msgid "Mode de Vie"
-msgstr "Password"
 
 #: .\templates\mon_profil.html:618
 msgid "Consommation d'Alcool:"
-msgstr ""
+msgstr "Alcohol consumption"
 
 #: .\templates\mon_profil.html:619
 msgid "Consommation de Tabac:"
-msgstr ""
+msgstr "Tobacco consumption"
 
 #: .\templates\mon_profil.html:620
 msgid "Situation Matrimoniale:"
-msgstr ""
+msgstr "Marital status:"
 
 #: .\templates\mon_profil.html:621
 msgid "Nombre d'Enfants:"
-msgstr ""
+msgstr "Number of children"
 
 #: .\templates\mon_profil.html:625
 msgid "À propos de vous:"
-msgstr ""
+msgstr "About you :"
 
 #: .\templates\mon_profil.html:626
 msgid "À propos de la personne recherchée:"
-msgstr ""
+msgstr "About the person sought :"
 
 #: .\templates\mon_profil.html:630
-#, fuzzy
-#| msgid "Personal Information"
 msgid "Plus d'informations"
-msgstr "Personal Information"
+msgstr "More information"
 
 #: .\templates\mon_profil.html:631
 #, fuzzy
@@ -1204,49 +1186,53 @@ msgstr "Ethnicity:"
 
 #: .\templates\mon_profil.html:632
 msgid "Art corporel:"
-msgstr ""
+msgstr "Body art"
+
+msgid  "Voulez-vous d'autres enfants"
+msgstr "Do you want more children"
+
+
+msgid "Effacer"
+msgstr "Delete"
+
+msgid "de 25 ans"
+msgstr "25 years old"
+
 
 #: .\templates\mon_profil.html:633
 msgid "Enfants souhaités:"
-msgstr ""
+msgstr "Desired children"
 
-#: .\templates\mon_profil.html:635
-#, fuzzy
-#| msgid "Education level:"
-msgid "Situation de vie:"
-msgstr "Education level:"
+msgid "Situation de vie"
+msgstr "Living situation"
 
 #: .\templates\mon_profil.html:636
 msgid "Prêt à déménager:"
-msgstr ""
+msgstr "Willing to relocate"
 
 #: .\templates\mon_profil.html:637
 msgid "Relation recherchée:"
-msgstr ""
+msgstr "Relationship sought"
 
 #: .\templates\mon_profil.html:638
 msgid "Niveau d'étude:"
-msgstr ""
+msgstr "Education level:"
 
 #: .\templates\mon_profil.html:640
 msgid "Signe astrologique:"
-msgstr ""
+msgstr "Astrological sign:"
 
 #: .\templates\mon_profil.html:642
-msgid ""
-"Vous n'avez pas encore complété les informations additionnelles de votre "
-"profil."
-msgstr ""
+msgid "Vous n'avez pas encore complété les informations additionnelles de votre profil."
+msgstr " You have not yet completed the additional information on your profile"
 
 #: .\templates\mon_profil.html:647
 msgid "Compléter le profil"
-msgstr ""
+msgstr "Complete the profile"
 
 #: .\templates\mon_profil.html:648
-#, fuzzy
-#| msgid "Who visited my profile"
 msgid "Modifier le profil"
-msgstr "Who visited my profile"
+msgstr "Edit profile"
 
 #: .\templates\mon_profil.html:649
 msgid "Paramètres"
@@ -1262,7 +1248,7 @@ msgstr "No notifications at the moment."
 
 #: .\templates\online_members.html:6
 msgid "Membres en ligne"
-msgstr ""
+msgstr "Online members"
 
 #: .\templates\online_members.html:18 .\templates\visitors_list.html:20
 #, fuzzy
@@ -1521,9 +1507,6 @@ msgstr ""
 msgid "Inscrivez vous!"
 msgstr "Sign up!"
 
-#: .\templates\register.html:39
-msgid "Pseudo"
-msgstr ""
 
 #: .\templates\register.html:47
 msgid "Date de naissance"
@@ -1538,13 +1521,7 @@ msgstr "Pays"
 msgid "Select"
 msgstr ""
 
-#: .\templates\register.html:128
-msgid "Provinces"
-msgstr ""
 
-#: .\templates\register.html:135
-msgid "Places"
-msgstr ""
 
 #: .\templates\register.html:142
 msgid "Je suis un(e)"
@@ -1561,10 +1538,6 @@ msgstr "Woman"
 #: .\templates\register.html:149
 msgid "Je cherche un(e)"
 msgstr "I am looking for"
-
-#: .\templates\register.html:156
-msgid "Age entre"
-msgstr "Age between"
 
 #: .\templates\register.html:160
 msgid "Début"
@@ -1626,6 +1599,34 @@ msgstr ""
 msgid "Aucune visite pour le moment"
 msgstr "No notifications at the moment."
 
+#: .\\templates\\attente_validation.html:6
+msgid "Nous vous souhaitons la bienvenue sur"
+msgstr "We welcome you to"
+
+#: .\\templates\\attente_validation.html:11
+msgid "Votre compte est actuellement en"
+msgstr "Your account is currently under"
+
+#: .\\templates\\attente_validation.html:11
+msgid "cours de révision"
+msgstr "review"
+
+#: .\\templates\\attente_validation.html:11
+msgid " Nous vous remercions de votre patience pendant que nous procédons à l’examen de votre profil, ce qui ne devrait prendre que peu de temps. Nous vous invitons à réessayer ultérieurement."
+msgstr "Thank you for your patience while we review your profile. This should not take long. Please try again later."
+
+#: .\\templates\\attente_validation.html:14
+msgid "Ressayer"
+msgstr "Retry"
+
+#: .\\templates\\attente_validation.html:15
+msgid "Deconnectez"
+msgstr "Logout"
+
+#: .\\templates\\attente_validation.html:17
+msgid "Ou contactez par :"
+msgstr "Or contact us via:"
+
 #~ msgid "Photo validation before sending messages"
 #~ msgstr "Photo validation before sending messages"
 
@@ -1672,8 +1673,6 @@ msgstr "No notifications at the moment."
 #~ msgid "Sélectionnez un lieu"
 #~ msgstr "Select your places"
 
-#~ msgid "Sélectionnez une ville"
-#~ msgstr "Select your provinces"
 
 #~ msgid "years"
 #~ msgstr "years"
@@ -1689,3 +1688,268 @@ msgstr "No notifications at the moment."
 
 #~ msgid "Vous avez un nouveau visiteur."
 #~ msgstr "You have a new visitor."
+
+#: .\\templates\\condition.html:1
+msgid "Complétez votre profil"
+msgstr "Complete your profile"
+
+#: .\\templates\\condition.html:1
+msgid "Photo de profil"
+msgstr "Profile photo"
+
+#: .\\templates\\condition.html:1
+msgid "Choisir une photo"
+msgstr "Choose a photo"
+
+#: .\\templates\\condition.html:1
+msgid "Apparence physique"
+msgstr "Physical appearance"
+
+#: .\\templates\\condition.html:1
+msgid "Couleur des cheveux"
+msgstr "Hair color"
+
+#: .\\templates\\condition.html:1
+msgid "Blond"
+msgstr "Blond"
+
+#: .\\templates\\condition.html:1
+msgid "Je change souvent"
+msgstr "I change often"
+
+#: .\\templates\\condition.html:1
+msgid "Châtain"
+msgstr "Chestnut"
+
+
+#: .\\templates\\condition.html:1
+msgid "Couleur des yeux"
+msgstr "Eye color"
+
+#: .\\templates\\condition.html:1
+msgid "Bleu"
+msgstr "Blue"
+
+#: .\\templates\\condition.html:1
+msgid "Noisette"
+msgstr "Hazel"
+
+#: .\\templates\\condition.html:1
+msgid "Vert"
+msgstr "Green"
+
+#: .\\templates\\condition.html:1
+msgid "Taille"
+msgstr "Height"
+
+#: .\\templates\\condition.html:1
+msgid "Poids (kg)"
+msgstr "Weight (kg)"
+
+
+msgid "Mode de vie"
+msgstr "Lifestyle"
+
+#: .\\templates\\condition.html:1
+msgid "Buvez-vous ?"
+msgstr "Do you drink?"
+
+#: .\\templates\\condition.html:1
+msgid "Bois"
+msgstr "Drink"
+
+#: .\\templates\\condition.html:1
+msgid "Bois à l'occasion"
+msgstr "Drink occasionally"
+
+#: .\\templates\\condition.html:1
+msgid "Ne bois pas"
+msgstr "Do not drink"
+
+#: .\\templates\\condition.html:1
+msgid "Fumez-vous ?"
+msgstr "Do you smoke?"
+
+#: .\\templates\\condition.html:1
+msgid "Je fume"
+msgstr "I smoke"
+
+#: .\\templates\\condition.html:1
+msgid "Je fume à l'occasion"
+msgstr "I smoke occasionally"
+
+#: .\\templates\\condition.html:1
+msgid "Je ne fume pas"
+msgstr "I do not smoke"
+
+#: .\\templates\\condition.html:1
+msgid "Situation matrimoniale"
+msgstr "Marital status"
+
+#: .\\templates\\condition.html:1
+msgid "Célibataire"
+msgstr "Single"
+
+#: .\\templates\\condition.html:1
+msgid "Séparé(e)"
+msgstr "Separated"
+
+#: .\\templates\\condition.html:1
+msgid "Veuf/Veuve"
+msgstr "Widowed"
+
+#: .\\templates\\condition.html:1
+msgid "Divorcé(e)"
+msgstr "Divorced"
+
+#: .\\templates\\condition.html:1
+msgid "Nombre d'enfants"
+msgstr "Number of children"
+
+#: .\\templates\\condition.html:1
+msgid "À propos de vous"
+msgstr "About you"
+
+#: .\\templates\\condition.html:1
+msgid "À propos de la personne que vous recherchez"
+msgstr "About the person you are looking for"
+
+#: .\\templates\\condition.html:1
+msgid "Retour"
+msgstr "Back"
+
+#: .\\templates\\condition.html:1
+msgid "Valider"
+msgstr "Submit"
+
+
+msgid  "Compléter votre profil"
+msgstr "Complete your profile"
+
+msgid "Votre ethnicité"
+msgstr "Your ethnicity"
+
+msgid  "Je prefere ne pas prononcer"
+msgstr "I prefer not to say"
+
+msgid  "Art corporel"
+msgstr "Body art"
+
+msgid  "Aucun"
+msgstr "None"
+
+msgid  "Boucle d’oreilles"
+msgstr "Earrings"
+
+msgid  "Marque"
+msgstr "Mark"
+
+msgid  "Tatouage"
+msgstr "Tattoo"
+
+
+msgid  "Oui"
+msgstr "Yes"
+
+msgid  "Non"
+msgstr "No"
+
+msgid  "Je ne suis pas sûr(e)"
+msgstr "I'm not sure"
+
+msgid  "Sélectionné "
+msgstr "Selected"
+
+msgid  "En Couple"
+msgstr "In a relationship"
+
+msgid  "Célibataire "
+msgstr "Single"
+
+msgid  "Ouvert(e) aux rencontre"
+msgstr "Open to meeting"
+
+msgid  "Prêt à déménager"
+msgstr "Ready to move"
+
+msgid  "Relation recherchée"
+msgstr "Relationship sought"
+
+msgid  "Sérieuse et engagé"
+msgstr "Serious and committed"
+
+msgid  "Amicale et sans engagement"
+msgstr "Friendly and without commitment"
+
+msgid  "Fun et décontractée"
+msgstr "Fun and relaxed"
+
+msgid  "Niveau d'étude"
+msgstr "Education level"
+
+msgid  "Lycée"
+msgstr "High school"
+
+msgid  "Université"
+msgstr "University"
+
+msgid  "Diplômé(e)"
+msgstr "Graduate"
+
+msgid  "Autodidacte"
+msgstr "Self-taught"
+
+msgid  "Nationalité"
+msgstr "Nationality"
+
+msgid  "Autre"
+msgstr "Other"
+
+msgid  "Langues Parlés"
+msgstr "Spoken languages"
+
+msgid  "Signe astrologique"
+msgstr "Astrological sign"
+
+msgid  "Enregistrer"
+msgstr "Save"
+
+msgid  "Fermer"
+msgstr "Close"
+
+msgid  "Modifier votre profil"
+msgstr "Edit your profile"
+
+msgid  "Pseudo"
+msgstr "Username"
+
+msgid  "Email"
+msgstr "Email"
+
+msgid  "Pays"
+msgstr "Country"
+
+msgid  "Provinces"
+msgstr "Provinces"
+
+msgid  "Sélectionnez une ville"
+msgstr "Select a city"
+
+msgid  "Lieux"
+msgstr "Places"
+
+msgid  "Sélectionnez un Lieux"
+msgstr "Select a place"
+
+msgid  "Recherche"
+msgstr "Search"
+
+msgid  "Age entre"
+msgstr "Age between"
+
+msgid  "debut :"
+msgstr "start:"
+
+msgid  "fin :"
+msgstr "end:"
+

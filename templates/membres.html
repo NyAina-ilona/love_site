@@ -135,7 +135,7 @@
                                     <h5>{% trans "looking for" %}: {% trans "age between" %} {{profile.age_debut}} - {{profile.age_fin}} years</h5>
                                     <div class="reaction">
                                         <div>
-                                            <a href="#" class="like-btn" data-id="{{ profile.id }}" style="text-decoration:none;"><i class="like_ fas fa-thumbs-up" style="color:#09DAFC"></i></a>
+                                            <a href="#" class="like-btn" data-id="{{ profile.id }}" style="text-decoration:none;"><i class="like_ fas fa-thumbs-up" style="color:#007FFF"></i></a>
                                             <span class="like-count-{{ profile.id }}">
                                                 {{ profile.likes_received_count }}
                                             </span>
@@ -173,7 +173,7 @@
                                     <h5>{% blocktrans %}looking for: age between {{ profile.age_debut }} - {{profile.age_fin}} years{% endblocktrans %}</h5>
                                     <div class="reaction">
                                         <div>
-                                            <a href="#" class="like-btn" data-id="{{ profile.id }}" style="text-decoration:none;"><i class="fas fa-thumbs-up" style="color:#09DAFC"></i></a>
+                                            <a href="#" class="like-btn" data-id="{{ profile.id }}" style="text-decoration:none;"><i class="fas fa-thumbs-up" style="color:#007FFF"></i></a>
                                             <span class="like-count-{{ profile.id }}">
                                                 {{ profile.likes_received_count }}
                                             </span>
@@ -252,7 +252,7 @@
         }
         .profiles-container {
             max-width: 1200px;
-            margin: -2rem auto;
+            margin: auto;
             padding: 0 1rem;
         }
        
@@ -372,7 +372,7 @@
         .age_filter select{
             width: 10rem;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
 
             .entete_membres {
             padding: 20px 0px;
@@ -518,13 +518,14 @@
         }
 
         /* Tablet styles */
-        @media (min-width: 769px) and (max-width: 1024px) {
+        @media (min-width: 767px) and (max-width: 1024px) {
             .form2 {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 flex-wrap: wrap;
                 padding: 1rem;
+                margin-top: 10vh !important;
             }
 
             .form2 select {

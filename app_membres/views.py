@@ -25,7 +25,7 @@ from django.utils.crypto import get_random_string
 from django.conf import settings
 from datetime import datetime
 import json
-from .decorators import membre_validation_required, condition_required
+from .decorators import membre_validation_required, condition_required, attente_validation_required
 
 
 def aff_register(request):
@@ -216,42 +216,68 @@ def Entrer_image(request,image):
 def condition_admi(request):
     if not request.session.get("client"):
         return redirect('aff_login')
+    membre_id = request.session.get("client", {}).get("id")
+    # Bloquer l'accès direct à condition_admi si déjà connecté et sur membres
+    referer = request.META.get('HTTP_REFERER', '')
+    if membre_id and ('membres' in referer or request.path == '/condition_admi/'):
+        return redirect('membres')
+    from app_membres.models import Profil
+    profil_exists = False
+    if membre_id:
+        profil_exists = Profil.objects.filter(membre_id=membre_id).exists()
+    if not profil_exists:
+        # Si le profil n'existe pas, forcer à rester sur cette page
+        if request.path != '/condition_admi/':
+            return redirect('condition_admi')
     if request.method == "POST":
         membre_id = request.session.get("client", {}).get("id")
+        cheuveux = request.POST.get('cheveux')
+        yeux =request.POST.get('yeux')
+        taille =request.POST.get('taille')
+        poids = request.POST.get('poids')
+        alcool = request.POST.get('alcool')
+        tabac = request.POST.get('tabac')
+        situation = request.POST.get('situation')
+        description =request.POST.get('description')
+        recherche = request.POST.get('recherche')
+        
         if not membre_id:
             return redirect('aff_login')
         membre = Member.objects.get(id=membre_id)
         pseudo = request.session["client"].get("pseudo")
         # Correction: vérifier si un profil existe déjà pour ce membre
         if not Profil.objects.filter(membre=membre).exists():
-            profil = Profil.objects.create(
-                membre=membre,
-                sexe=membre.gender,
-                cheveux=request.POST.get('cheveux'),
-                yeux=request.POST.get('yeux'),
-                taille=int(request.POST.get('taille')),
-                poids=int(request.POST.get('poids')),
-                alcool=request.POST.get('alcool'),
-                tabac=request.POST.get('tabac'),
-                situation=request.POST.get('situation'),
-                enfants=int(request.POST.get('enfants')) if request.POST.get('enfants') and request.POST.get('enfants').isdigit() else 0,
-                description=request.POST.get('description'),
-                recherche=request.POST.get('recherche'),
-                images=f"static/images/profils/{Entrer_image(request,pseudo)}"
-            )
-            
-            request.session["client"] = {
-                "id": membre.id,
-                "pseudo": membre.pseudo,
-                "email": membre.email,
-                "gender": membre.gender,
-                "country": membre.country,
-                "date_inscrit": str(membre.date_inscrit),
-                "likes_count": membre.likes_received_count,
-                "notifications_count": membre.notifications_count,
-                "hearts_count": membre.hearts_received_count,
-                "profil_image": str(profil.images),
-            }
+            if poids and alcool and taille and tabac and description and recherche:
+                profil = Profil.objects.create(
+                    membre=membre,
+                    sexe=membre.gender,
+                    cheveux=cheuveux,
+                    yeux=yeux,
+                    taille=int(taille),
+                    poids= int(poids),
+                    alcool= alcool,
+                    tabac= tabac,
+                    situation= situation,
+                    enfants=int(request.POST.get('enfants')) if request.POST.get('enfants') and request.POST.get('enfants').isdigit() else 0,
+                    description= description,
+                    recherche=recherche,
+                    images=f"static/images/profils/{Entrer_image(request,pseudo)}"
+                )
+                
+                request.session["client"] = {
+                    "id": membre.id,
+                    "pseudo": membre.pseudo,
+                    "email": membre.email,
+                    "gender": membre.gender,
+                    "country": membre.country,
+                    "date_inscrit": str(membre.date_inscrit),
+                    "likes_count": membre.likes_received_count,
+                    "notifications_count": membre.notifications_count,
+                    "hearts_count": membre.hearts_received_count,
+                    "profil_image": str(profil.images),
+                }
+            else:
+                return render(request, "condition.html", {"messages": "Veuillez remplir tous les champs"})
 
             # Le profil est automatiquement validé si c'est un homme 
             # ou si la validation automatique est activée
@@ -264,6 +290,8 @@ def condition_admi(request):
 
     return render(request, 'condition.html')
 
+@condition_required
+@attente_validation_required
 def membre_inscrit(request):
     if not request.session.get("client"):
         return redirect('aff_login')
@@ -335,6 +363,7 @@ def membre_inscrit(request):
     }
     return render(request, 'membres.html', context)
 
+@attente_validation_required
 def like_member(request, member_id):
     if request.method != "POST":
         return JsonResponse({'error': 'Invalid request method'}, status=400)
@@ -356,6 +385,7 @@ def like_member(request, member_id):
             )
     return JsonResponse({'likes_count': liked.likes_received_count})
 
+@attente_validation_required
 def fetch_notifications(request):
     user_id = request.session.get("client", {}).get("id")
     if not user_id:
@@ -378,6 +408,17 @@ def mark_notifications_as_read(request):
     return JsonResponse({'success': True})
 
 def Attente_validation(request):
+    membre_id = request.session.get("client", {}).get("id")
+    # Si déjà connecté et sur la page membres, bloquer l'accès direct à attente_validation
+    referer = request.META.get('HTTP_REFERER', '')
+    if membre_id and ('membres' in referer or request.path == '/attente_validation/'):
+        return redirect('membres')
+    if not membre_id:
+        return redirect('aff_login')
+    from app_membres.models import Profil
+    profil_exists = Profil.objects.filter(membre_id=membre_id).exists()
+    if not profil_exists:
+        return redirect('condition_admi')
     return render(request, "attente_validation.html")
 
 def condition(request):
@@ -472,6 +513,7 @@ def ajout_additional(request):
         return redirect('mon_profil', membre_id=membre.id)
     return render(request, 'condition.html')
 
+@attente_validation_required
 def modifier_profil(request):
     if not request.session.get("client"):
         return redirect('aff_login')
@@ -510,7 +552,6 @@ def modifier_profil(request):
     return render(request, 'mon_profil.html', context)
 
 
-@condition_required
 def aff_parametres(request, id_membre):
     if not request.session.get("client"):
         return redirect("aff_login")
@@ -527,7 +568,6 @@ def supprimer_membre_par_id(request, id_membre):
     if not client_id:
         return redirect("aff_login")
     membre = get_object_or_404(Member, id=id_membre)
-    # Vérifier que l'utilisateur supprime son propre compte
     if str(id_membre) != str(request.session["client"]["id"]):
         messages.error(request, "Vous ne pouvez supprimer que votre propre compte.")
         return redirect("parametres", id_membre=id_membre)
@@ -535,7 +575,6 @@ def supprimer_membre_par_id(request, id_membre):
     if request.method == "POST":
         password = request.POST.get("password")
         
-        # Vérifier le mot de passe
         if not check_password(password, membre.user.password):
             messages.error(request, "Mot de passe incorrect.")
             return redirect("parametres", id_membre=id_membre)

@@ -1,13 +1,13 @@
 {% load i18n %}
 
-<footer>
+<footer id="footer">
     <div class="container">
-        <div class="display">
+        <div class="display foot_1">
             <a href="{% url 'a_propos' %}"><p class="parafooter para1">{% trans "A Propos" %}</p></a>
             <a href="{% url 'condition_util' %}"><p class="parafooter para2">{% trans "Termes et confidentialité" %}</p></a>
            
         </div>
-        <div class="display">
+        <div class="display foot_2">
             <a href="{% url 'politique' %}"><p class="parafooter">{% trans "Politique de confidentialité" %}</p></a>
             <a href="{% url 'contact' %}" class="parafooter">Contact</a>
         </div>

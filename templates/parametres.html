@@ -1,15 +1,6 @@
 {% extends "layouts/master.html" %}
 {% load i18n %}
 {% block "contenu" %}
-{% if messages %}
-
-    <ul class="messages">
-        {% for message in messages %}
-            <li >{{ message }}</li>
-        {% endfor %}
-    </ul>
-    
-{% endif %}
 
   <div class="action-buttons">
         
@@ -445,11 +436,20 @@
     footer{
         margin-top: 26vh !important;
     }
-    @media screen and (max-width:768px) {
+    @media screen and (max-width:767px) {
       .action-buttons{
           margin-top: 20vh;
       }
     }
+    @media (min-width: 767px) and (max-width: 1024px) {
+    footer{
+      margin-top: 51vh !important;
+      }
+    .action-buttons{
+      margin-top: 13vh !important;
+    }
+
+  }
   </style>
   
   <script>

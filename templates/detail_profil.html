@@ -10,21 +10,21 @@
                     <div style="position:relative; display:inline-block;">
                         <img src="/{{ profil.images }}" alt="Photo de profil" class="profile-image">
                         {% if photo_valider and photo_valider.valider %}
-                            <span class="badge-validation" style="position:absolute; bottom:12px; right:18px; background:#28a745; color:white; border-radius:50%; padding:4px 7px; font-size:18px; border:2px solid #fff; cursor:pointer;" title="Profil validé">
+                            <span class="badge-validation" style="position:absolute; bottom:12px; right:18px; background:#28a745; color:white; border-radius:50%; padding:4px 7px; font-size:18px; border:2px solid #fff; cursor:pointer;" id="badge" title="Profil validé">
                                 <i class="fas fa-check"></i>
-                                <span class="popup-validation">Profil validé</span>
+                                <span class="popup-validation">message validé</span>
                             </span>
                         {% else %}
                             <span class="badge-validation" style="position:absolute; bottom:12px; right:18px; background:#dc3545; color:white; border-radius:50%; padding:4px 7px; font-size:18px; border:2px solid #fff; cursor:pointer;" title="Profil non validé">
                                 <i class="fas fa-times"></i>
-                                <span class="popup-validation">Profil non validé</span>
+                                <span class="popup-validation">message non validé</span>
                             </span>
                         {% endif %}
                     </div>
                     <div class="profile-stats">
                         <div class="stat">
                             <span class="stat-count like-count-{{ membre.id }}">{{ membre.likes_received_count }}</span>
-                            <a href="#" class="like-btn" style="text-decoration: none;" data-id="{{ membre.id }}"><i class="fas fa-thumbs-up" style="color:#09DAFC"></i></a>
+                            <a href="#" class="like-btn" style="text-decoration: none;" data-id="{{ membre.id }}"><i class="fas fa-thumbs-up" style="color:#007FFF"></i></a>
                         </div>
                         <div class="stat1">
                             <span class="stat-count heart-count-{{ membre.id }}">{{ membre.hearts_received_count }}</span>
@@ -156,7 +156,7 @@
             <div class="info-section">
                 <h2 class="section-title"><i class="fas fa-info-circle"></i> {% trans "Description" %}</h2>
                 <div class="info-grid">
-                    <p><strong>{% trans "About you:" %}</strong> {{ profil.description }}</p>
+                    <p><strong>{% trans "About:" %}</strong> {{ profil.description }}</p>
                     <p><strong>{% trans "About the person sought:" %}</strong> {{ profil.recherche }}</p>
                 </div>
             </div>
@@ -224,9 +224,8 @@
     }
 
     .profile-image {
-        width: 95%;
+        width: 17rem;
         height: 35vh;
-        object-fit: cover;
     }
     .prof{
         /* box-shadow: 0 10px 15px black; */
@@ -260,7 +259,7 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        background: #ff6b6b;
+        background: #4361ee;
         color: white;
         padding: 0.5rem 1rem;
         border-radius: 8px;
@@ -410,6 +409,7 @@
         .profile-image {
             height: 300px;
             border-radius: 10px;
+            border-radius: 2px;
         }
 
         .profile-stats {
@@ -508,7 +508,9 @@
 
     @media (max-width: 480px) {
         .profile-image {
-            height: 250px;
+            height: 200px;
+            width: 15rem;
+            border-radius: 5px;
         }
 
         .profile-header-info h2 {
@@ -725,6 +727,23 @@
     }
     .badge-validation:hover .popup-validation {
         display: block;
+    }
+    @media (min-width: 767px) and (max-width: 1024px) {
+        .profile-header{
+            margin-top: 7vh !important;
+        }
+        .profile-image {
+            width: 15rem !important;
+            height: 29vh !important;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        #badge{
+            right: 60px !important;
+        }
+        .profile-actions{
+            margin-right: 10px;
+        }
     }
 </style>
 

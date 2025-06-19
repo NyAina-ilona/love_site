@@ -12,18 +12,29 @@ def membre_validation_required(view_func):
 
 def condition_required(view_func):
     def _wrapped_view(request, *args, **kwargs):
-        client = request.session.get("client")
-        membre_id = client.get("id") if client else None
-        if membre_id:
-            from app_membres.models import Profil
-            profil_exists = Profil.objects.filter(membre_id=membre_id).exists()
-            if not profil_exists and request.path != '/condition_admi/':
-                return redirect('condition_admi')
-        elif request.path == '/login/' or request.path == '/register/' or request.path == '/aff_login/' or request.path == '/aff_register/':
-            # Allow access to login and register pages even if not logged in
+        membre_id = request.session.get("client", {}).get("id")
+        from app_membres.models import Profil
+        profil_exists = Profil.objects.filter(membre_id=membre_id).exists() if membre_id else False
+        referer = request.META.get('HTTP_REFERER', '')
+        # Ne pas rediriger si déjà sur la page membres
+        if request.path == '/membres/':
             return view_func(request, *args, **kwargs)
-        else:
-            # If no membre_id, redirect to the correct login view
-            return redirect('aff_login')
+        if 'membres' in referer:
+            return redirect('membres')
+        if not membre_id or not profil_exists:
+            return redirect('membres')
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
+
+def attente_validation_required(view_func):
+    def _wrapped_view(request, *args, **kwargs):
+        membre_id = request.session.get("client", {}).get("id")
+        from app_membres.models import Profil
+        profil = Profil.objects.filter(membre_id=membre_id).first()
+        # Si l'utilisateur est connecté et déjà sur la page membres, il ne doit pas accéder à attente_validation
+        if membre_id and request.path == '/attente_validation/':
+            return redirect('membres')
+        if not membre_id or (profil and not getattr(profil, 'valider', False)):
+            return redirect('membres')
         return view_func(request, *args, **kwargs)
     return _wrapped_view

@@ -1,35 +1,40 @@
-{% extends "layouts/master.html" %}
+{% load i18n %}
 {% load static %}
 {% block "contenu" %}
     <section class="sexion1">
-        <h1 class="title">Nous vous souhaitons la bienvenue sur <span class="lovelimeet">Lovelimeet</span> !</h1>
+        <h1 class="title">{% trans "Nous vous souhaitons la bienvenue sur" %} <span class="lovelimeet">Lovelimeet</span> !</h1>
         <div class="contenaire boite">
-            <img src="{% static 'images/Object.png' %}" width="500px" alt="">
+            <img src="{% static 'images/Object.png' %}" alt="">
             <div class="ptboite">
                 <p class="para">
-                "Votre compte est actuellement en <span class="revi">cours de révision</span>. Nous vous remercions de votre patience pendant que nous procédons à l’examen de votre profil, ce qui ne devrait prendre que peu de temps. Nous vous invitons à réessayer ultérieurement."
+                "{% trans "Votre compte est actuellement en" %} <span class="revi">{% trans "cours de révision" %}</span>.{% trans " Nous vous remercions de votre patience pendant que nous procédons à l’examen de votre profil, ce qui ne devrait prendre que peu de temps. Nous vous invitons à réessayer ultérieurement." %}"
                 </p>
                 <div class="boton">
-                    <a href=""><p class="lien1"><i class="fas fa-arrows-rotate ressayer"></i>Ressayer</p></a>
-                    <a href="{% url 'deconnexion' %}"><p class="lien2"><i class="fas fa-arrow-right-from-bracket decon"></i>Deconnectez</p></a>
+                    <a href=""><p class="lien1"><i class="fas fa-arrows-rotate ressayer"></i>{% trans "Ressayer" %}</p></a>
+                    <a href="{% url 'deconnexion' %}"><p class="lien2"><i class="fas fa-arrow-right-from-bracket decon"></i>{% trans "Deconnectez" %}</p></a>
                 </div>
-                <h2 class="title2">Ou contactez par:</h2>
+                <h2 class="title2">{% trans "Ou contactez par :" %}</h2>
                 <div class="boton">
                     <a href="https://www.facebook.com/profile.php?id=61556604567837"><p class="lien3"><i class="fab fa-facebook-f fb"></i>Facebook</p></a>
                     <a href="https://www.instagram.com/lovelimeet?igsh=MXFpOXNmajgzZjJxNA=="><p class="lien4"><i class="fab fa-instagram insta"></i>instagram</p></a>
                 </div>
             </div>
         </div>
+        <footer>
+            <div class="footer-langue">
+            <form action="{% url 'set_language' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" name="language" value="fr" class="lang-btn" {% if LANGUAGE_CODE == 'fr' %}style="font-weight:bold; text-decoration:underline;"{% endif %}>Français</button>
+                <span style="color:#e11584; font-weight:bold;">|</span>
+                <button type="submit" name="language" value="en" class="lang-btn" {% if LANGUAGE_CODE == 'en' %}style="font-weight:bold; text-decoration:underline;"{% endif %}>English</button>
+            </form>
+        </div>
+        <p>&copy; {{ now|date:'Y' }} LoveMeet. {% trans "Tous droits réservés." %}</p>
+        </footer>
     </section>
 
     <style>
-        header {
-            display: none !important;
-        }
-        footer {
-            display: none !important;
-        }
-        *{
+        .sexion1{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -37,15 +42,14 @@
             text-decoration: none;
             background: #54aecb;
         }
-        .sexion1{
-            background: #54aecb;
-            height: 100vh;
-        }
         .contenaire{
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             align-items: center;
+        }
+        .boite img{
+            width: 500px;
         }
 
         .ptboite {
@@ -131,7 +135,7 @@
             margin-right: 10px;
         }
         .decon{
-        color: white;
+            color: white;
             font-size: 16px;
             background: #ff6600;
             margin-right: 10px; 
@@ -147,6 +151,37 @@
             font-size: 16px;
             background: #e11584;
             margin-right: 10px;  
+        }
+        footer{
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 5vh;
+        }
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #e11584;
+            font-size: 1.1em;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .lang-btn:hover {
+            color: #028a0f;
+            text-decoration: underline;
+        }
+        @media screen and (max-width:767px) {
+            .boite img{
+                width: 100% !important;
+            }
+            .ptboite{
+                margin: 20vh auto !important;
+            }
+            footer{
+                margin-top: 31vh;
+            }
         }
 
     </style>

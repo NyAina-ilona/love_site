@@ -13,7 +13,10 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 import base64
 import json
+from app_membres.decorators import attente_validation_required
+from django.contrib import messages
 
+@attente_validation_required
 def aff_message(request, membre_id):
     member = get_object_or_404(Member, id=membre_id)
     user = Member.objects.get(id=request.session["client"]["id"])
@@ -144,6 +147,7 @@ def delete_all_messages_for_me(request, member_id):
 
 #     return render(request, "messages_tous.html", {'messages_complets': messages_complets})
 
+@attente_validation_required
 def messages_tous(request):
     membre_connecte = request.session["client"]["id"]
     user = Member.objects.get(id=membre_connecte)
@@ -180,21 +184,36 @@ def messages_tous(request):
         'photo_valider': photo_valider
     })
 
-def envoyer_photo(request,membre_id):
+def envoyer_photo(request, membre_id):
     if request.method == 'POST':
+        from .models import Photo
+        # Empêcher l'envoi si une photo existe déjà
+        if Photo.objects.filter(membre_nom_id=membre_id).exists():
+            client_id = request.session.get("client", {}).get("id")
+            messages.error(request, "Vous avez déjà envoyé une photo. Veuillez attendre la validation ou contacter l'administrateur.")
+            return redirect("mon_profil", membre_id=client_id)
         user = Member.objects.get(id=membre_id)
         
-        
         photo_data = request.POST.get('photo')
-        format, imgstr = photo_data.split(';base64,')
-        ext = format.split('/')[-1]
-        photo = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
-        
+        if not photo_data or ';base64,' not in photo_data:
+            return render(request, "validation_photo.html", {
+                'error': "Format de photo invalide ou photo manquante. Veuillez réessayer."
+            })
+        try:
+            format, imgstr = photo_data.split(';base64,')
+            ext = format.split('/')[-1]
+            photo = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+        except Exception:
+            return render(request, "validation_photo.html", {
+                'error': "Erreur lors du traitement de la photo. Veuillez réessayer."
+            })
 
-        membre = Member.objects.get(id=request.session["client"]["id"])
+        membre = Member.objects.get(id=membre_id)
         Photo.objects.create(membre_nom=membre, images=photo)
-        # Correction: use the correct profile detail view name
-        return redirect("detail_profil", member_id=membre.id)
+        # Message de succès et redirection vers son propre profil
+        client_id = request.session.get("client", {}).get("id")
+        messages.success(request, "Votre photo a été envoyée à l'espace admin. Si elle n'est pas validée rapidement, veuillez contacter l'administrateur.")
+        return redirect("mon_profil", membre_id=client_id)
     return render(request, "detail_profil.html", {"erreur": "Veuillez prendre une photo pour accéder aux messages privés."})
 
 # @csrf_exempt
@@ -340,7 +359,17 @@ def delete_selected_messages(request):
     return JsonResponse({'success': False, 'error': 'Méthode non autorisée'}, status=405)
 
 def validation_photo(request):
-    return render(request,"validation_photo.html")
+    membre_id = request.session.get("client", {}).get("id")
+    membre = None
+    if membre_id:
+        from app_membres.models import Member
+        membre = Member.objects.filter(id=membre_id).first()
+        from .models import Photo
+        # Vérifier si une photo existe déjà pour ce membre
+        if Photo.objects.filter(membre_nom_id=membre_id).exists():
+            # Rediriger vers son profil si une photo existe déjà
+            return redirect("mon_profil", membre_id=membre_id)
+    return render(request, "validation_photo.html", {"membre": membre})
 
 
 

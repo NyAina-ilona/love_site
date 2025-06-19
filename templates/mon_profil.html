@@ -180,6 +180,7 @@
 
             .popup-content {
                 padding: 1.5rem;
+                margin-top: 30vh;
             }
 
             .formul {
@@ -191,8 +192,8 @@
             }
             .plus_photo img {
                 object-fit: cover;
-                width: 10rem !important;
-                height: 20vh !important;
+                width: 9rem !important;
+                height: 15vh !important;
                 margin-bottom: 0px !important;
             }
 
@@ -210,15 +211,15 @@
             font-size: 1.5rem;
         }
         .plus_photo img{
-            width: 20rem;
-            height: 30vh;
+            width: 15rem;
+            height: 25vh;
             margin-bottom: 0px;
         }
         .sary3{
             display: grid;
             gap: 20px;
             justify-content: center;
-            grid-template-columns: 2fr 2fr;
+            grid-template-columns: 2fr 2fr 2fr;
         }
 
         .section-title {
@@ -289,6 +290,8 @@
             max-width: 80%;
             max-height: 80%;
             border-radius: 10px;
+            width: 100%;
+            height: 100vh;
         }
 
         .close-modal {
@@ -319,6 +322,9 @@
             padding: 10px;
             border-radius: 50%;
             transition: background 0.3s;
+            height: 55px;
+            width: 45px;
+
         }
 
         .nav-button:hover {
@@ -479,7 +485,7 @@
             position: fixed;
         } 
         .ajout_image{
-            background: #ff0000;
+            background: #67032f;
             color: white;
             width: 54%;
             margin: 10px;
@@ -502,16 +508,16 @@
 
         .btn_effacer {
             border: none;
-            color: red;
+            color: white;
             font-size: 1vw;
             border-radius: 50%;
-            width: 41px;
+            width: 25px;
             background: transparent;
             position: absolute;
             z-index: 10;
             background: black;
             top: 8px;
-            height: 41px;
+            height: 25px;
             right: 10px;
         }
 
@@ -527,7 +533,10 @@
         .b{
             font-size: 2vw;
         }
-@media (max-width:768px) {
+@media (max-width:767px) {
+        .formul{
+            margin-top: 10vh !important;
+        }
         .span_{
             margin-left: 25% !important;
         }
@@ -539,13 +548,22 @@
             border: none;
             color: white;
             border-radius: 50%;
-            padding: 2px 7px;
+            padding: 1px 5px;
             cursor: pointer;
             transition: background-color 0.2s ease;
-            font-size: 20px;
-            left: 8.5rem !important;
-            width: 30px;
-            height: 30px;
+            font-size: 15px;
+            left: 4.3rem !important;
+            width: 25px;
+            height: 25px;
+        }
+        .modal-content{
+            width: 65% !important;
+            height: 40vh !important;
+        }
+        .close-modal{
+            position: absolute;
+            top: 12vh !important;
+            right: 20px !important;
         }
         .profile-container{
             margin-top: 15vh;
@@ -553,16 +571,64 @@
         .b{
             font-size: 4vw;
         }
+        .plus_photo img{
+            height: 12vh !important;
+        }
            
 }
-       
+@media (min-width: 767px) and (max-width: 1024px) {
+    .btn_effacer {
+        position: absolute;
+        top: 4px;
+        /* right: 4px; */
+        background-color: rgba(2, 2, 2, 0.8);
+        border: none;
+        color: white;
+        border-radius: 50%;
+        padding: 1px 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-size: 15px;
+        left: 12.3rem !important;
+        width: 25px;
+        height: 25px;
+    }
+        .modal-content{
+            width: 65% !important;
+            height: 40vh !important;
+        }
+        .close-modal{
+            position: absolute;
+            top: 12vh !important;
+            right: 20px !important;
+        }
+        .plus_photo img{
+            width: 15rem !important;
+            height: 18vh !important;
+        }
+        .profile-header img{
+            width: 80%;
+            height: 20vh;
+            object-fit: cover;
+            /* border: 3px solid #ff6b6b; */
+            margin-top: 5vh;
+            border-radius: 5px;
+        }
+    }
+        .image-container { position: relative; display: inline-block; }
+        .btn_effacer { position: absolute; top: 5px; right: 5px; border: none; cursor: pointer; z-index: 10; padding: 0; }
+        .btn_effacer i { font-size: 22px; color: #333; }
+        .popup-effacer { display: none; position: absolute; right: 0; top: 35px;z-index: 100; min-width: 120px; padding: 10px; }
+        .popup-btn-effacer { background: #e74c3c; color: #fff; border: none; border-radius: 4px; padding: 5px 15px; cursor: pointer; }
+        .popup-btn-effacer:hover { background: #c0392b; }
+            
     </style>
 
     <div class="profile-container">
         <div class="profile-header">
             <img src="{{ profil.images.url }}" alt="Photo de profil"> <br><br>
             <b style="color: rgb(29, 26, 26);" class="b">{{ membre.pseudo }}</b>
-                {% if profil.valider %}
+                {% if photo_valider and photo_valider.valider %}
                 <span style="background:#28a745; color:white; border-radius:50%; padding:2px 6px; font-size:18px; border:2px solid #fff;" class="span_">
                     <i class="fas fa-check"></i>
                 </span>
@@ -573,7 +639,7 @@
                 {% endif %}
             <p style="color: rgb(19, 124, 19);"><button style="width: 10px;height: 10px;background-color: green;border-radius: 50%;border: none;"></button> {% trans "en ligne" %}</p>
             <i style="color: #0070f3;"><i class="fas fa-location-dot"></i> {{ membre.country }} , {{ membre.city }}  </i>
-            <p style="color: rgb(15, 15, 15);"><i class="fas fa-mars-stroke"></i> {{ membre.gender }} de 25 ans</p>
+            <p style="color: rgb(15, 15, 15);"><i class="fas fa-mars-stroke"></i> {{ membre.gender }} {% trans "de 25 ans" %}</p>
         </div>
         <div class="plus_photo">
             <h3>{% trans "Photo" %}</h3>
@@ -587,10 +653,12 @@
                                 {% if image %}
                                     <div class="image-container">
                                         <img src="{{ image.url }}" alt="Photo supplémentaire {{ i }}" class="photo-thumbnail">
-                                        <button class="btn_effacer" type="button" onclick="supprimerImage('{{ field }}', this)">
-                                            
-                                            <a href=""><i class="fas fa-times"></i></a>
+                                        <button class="btn_effacer" type="button" onclick="togglePopup(this, event)">
+                                            <i class="fas fa-ellipsis-vertical"></i>
                                         </button>
+                                        <div class="popup-effacer" style="display:none; position:absolute; right:-20px; top:-2px;border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.15); z-index:1000;">
+                                            <button type="button" class="popup-btn-effacer" onclick="supprimerImage('{{ field }}', this)">{% trans "Effacer" %}</button>
+                                        </div>
                                     </div>
                                 {% endif %}
                             {% endwith %}
@@ -610,7 +678,7 @@
                 <h3 class="category-title"><i class="fas fa-eye"></i> {% trans "Apparence" %}</h3>
                 <li class="info-item"><strong>{% trans "Couleur des Yeux:" %}</strong> {{ profil.yeux }}</li>
                 <li class="info-item"><strong>{% trans "Couleur des Cheveux:" %}</strong> {{ profil.cheveux }}</li>
-                <li class="info-item"><strong>{% trans "Taille:" %}</strong> {{ profil.taille }} cm</li>
+                <li class="info-item"><strong>{% trans "Taille :" %}</strong> {{ profil.taille }} cm</li>
                 <li class="info-item"><strong>{% trans "Poids:" %}</strong> {{ profil.poids }} kg</li>
 
                 <!-- Mode de vie -->
@@ -632,7 +700,7 @@
                     <li class="info-item"><strong>{% trans "Art corporel:" %}</strong> {{ additional_info.art_corporel }}</li>
                     <li class="info-item"><strong>{% trans "Enfants souhaités:" %}</strong> {{ additional_info.enfants_souhaites }}</li>
                     <li class="info-item"><strong>{% trans "Profession:" %}</strong> {{ additional_info.profession }}</li>
-                    <li class="info-item"><strong>{% trans "Situation de vie:" %}</strong> {{ additional_info.situation_vie }}</li>
+                    <li class="info-item"><strong>{% trans "Situation de vie" %}</strong> {{ additional_info.situation_vie }}</li>
                     <li class="info-item"><strong>{% trans "Prêt à déménager:" %}</strong> {{ additional_info.demenagement }}</li>
                     <li class="info-item"><strong>{% trans "Relation recherchée:" %}</strong> {{ additional_info.relation_recherche }}</li>
                     <li class="info-item"><strong>{% trans "Niveau d'étude:" %}</strong> {{ additional_info.niveau_etude }}</li>
@@ -662,13 +730,13 @@
 
     <div class="popup-overlay" id="popup-overlay">
         <div class="popup-content">
-            <h3>Compléter votre profil</h3>
+            <h3>{% trans "Compléter votre profil" %}</h3>
             <form action="{% url 'ajout_additional' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <section class="formul">
                     <div class="sous_formul">
                         <div class="form-group">
-                            <label for="ethnicite">Votre ethnicité</label>
+                            <label for="ethnicite">{% trans "Votre ethnicité" %}</label>
                             <select id="ethnicite" name="ethnicite">
                                 <option value="Africain">Africain</option>
                                 <option value="Afro-Americain">Afro-Americain</option>
@@ -679,76 +747,75 @@
                                 <option value="Indien">Indien</option>
                                 <option value="Européen">Européen</option>
                                 <option value="Métis">Métis</option>
-                                <option value="Pas-prononcer">Je prefere ne pas prononcer</option>
+                                <option value="Pas-prononcer">{% trans "Je prefere ne pas prononcer" %}</option>
 
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="art_corporel">Art corporel</label>
+                            <label for="art_corporel">{% trans "Art corporel" %}</label>
                             <select name="art_corporel" id="art_corporel">
-                                <option value="Aucun">Aucun</option>
-                                <option value="Boucle d’oreilles">Boucle d’oreilles</option>
-                                <option value="Marque">Marque</option>
-                                <option value="Piercing">Piercing</option>
-                                <option value="Tatouage">Tatouage</option>
+                                <option value="Aucun">{% trans "Aucun" %}</option>
+                                <option value="Boucle d’oreilles">{% trans "Boucle d’oreilles" %}</option>
+                                <option value="Marque">{% trans "Marque" %}</option>
+                                <option value="Piercing">{% trans "Piercing" %}</option>
+                                <option value="Tatouage">{% trans "Tatouage" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="enfants_souhaites">Voulez-vous d'autres enfants</label>
+                            <label for="enfants_souhaites">{% trans "Voulez-vous d'autres enfants" %}</label>
                             <select name="enfants_souhaites" id="enfants_souhaites">
-                                <option value="Oui">Oui</option>
-                                <option value="Non">Non</option>
-                                <option value="Je ne suis pas sûr(e)">Je ne suis pas sûr(e)</option>
+                                <option value="Oui">{% trans "Oui" %}</option>
+                                <option value="Non">{% trans "Non" %}</option>
+                                <option value="Je ne suis pas sûr(e)">{% trans "Je ne suis pas sûr(e)" %}</option>
                                 
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="profession">Profession</label>
+                            <label for="profession">{% trans "Profession" %}</label>
                             <input type="text" id="profession" name="profession" value="{{ additional_info.profession }}">
                         </div>
                         <div class="form-group">
-                            <label for="situation_vie">Situation de vie</label>
+                            <label for="situation_vie">{% trans "Situation de vie" %}</label>
                             <!-- <input type="text" id="situation_vie" name="situation_vie" value="{{ additional_info.situation_vie }}"> -->
                             <select name="situation_vie" id="situation_vie">
-                                <option value="">sélectionné</option>
-                                <option value="{{ additional_info.situation_vie }}">En Couple</option>
-                                <option value="{{ additional_info.situation_vie }}">Célibataire</option>
-                                <option value="{{ additional_info.situation_vie }}">Ouvert(e) aux rencontre</option>
+                                <option value="">{% trans "sélectionné" %}</option>
+                                <option value="{{ additional_info.situation_vie }}">{% trans "En Couple" %}</option>
+                                <option value="{{ additional_info.situation_vie }}">{% trans "Célibataire" %}</option>
+                                <option value="{{ additional_info.situation_vie }}">{% trans "Ouvert(e) aux rencontre" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="demenagement">Prêt à déménager</label>
+                            <label for="demenagement">{% trans "Prêt à déménager" %}</label>
                             <!-- <input type="text" id="demenagement" name="demenagement" value=""> -->
                             <select name="demenagement" id="demenagement">
-                                <option value="{{ additional_info.demenagement }}">Oui</option>
-                                <option value="{{ additional_info.demenagement }}">Non</option>
+                                <option value="{{ additional_info.demenagement }}">{% trans "Oui" %}</option>
+                                <option value="{{ additional_info.demenagement }}">{% trans "Non" %}</option>
                             </select>
                         </div>
                         
                     </div>
                     <div class="sous_formul">
                         <div class="form-group">
-                            <label for="relation_recherche">Relation recherchée</label>
-                            <!-- <input type="text" id="relation_recherche" name="relation_recherche" value="{{ additional_info.relation_recherche }}"> -->
+                            <label for="relation_recherche">{% trans "Relation recherchée" %}</label>
                             <select name="relation_recherche" id="relation_recherche">
-                                <option value="{{ additional_info.relation_recherche }}">Sérieuse et engagé</option>
-                                <option value="{{ additional_info.relation_recherche }}">Amicale et sans engagement</option>
-                                <option value="{{ additional_info.relation_recherche }}">Fun et décontractée</option>
+                                <option value="{{ additional_info.relation_recherche }}">{% trans "Sérieuse et engagé" %}</option>
+                                <option value="{{ additional_info.relation_recherche }}">{% trans "Amicale et sans engagement" %}</option>
+                                <option value="{{ additional_info.relation_recherche }}">{% trans "Fun et décontractée" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="niveau_etude">Niveau d'étude</label>
+                            <label for="niveau_etude">{% trans "Niveau d'étude" %}</label>
                             <!-- <input type="text" id="niveau_etude" name="niveau_etude" value="{{ additional_info.niveau_etude }}"> -->
                             <select name="niveau_etude" id="niveau_etude">
-                                <option value="{{ additional_info.niveau_etude }}">Lycée</option>
-                                <option value="{{ additional_info.niveau_etude }}">Université</option>
-                                <option value="{{ additional_info.niveau_etude }}">Diplômé(e)</option>
-                                <option value="{{ additional_info.niveau_etude }}">Autodidacte</option>
+                                <option value="{{ additional_info.niveau_etude }}">{% trans "Lycée" %}</option>
+                                <option value="{{ additional_info.niveau_etude }}">{% trans "Université" %}</option>
+                                <option value="{{ additional_info.niveau_etude }}">{% trans "Diplômé(e)" %}</option>
+                                <option value="{{ additional_info.niveau_etude }}">{% trans "Autodidacte" %}</option>
                             </select>
                              
                         </div>
                         <div class="form-group">
-                            <label for="nationalité">Nationalité</label>
+                            <label for="nationalité">{% trans "Nationalité" %}</label>
                             <select id="nationalité" name="nationalité">
                                 <option value="Malagasy">Malagasy</option>
                                 <option value="Française">Française</option>
@@ -761,11 +828,11 @@
                                 <option value="Italienne">Italienne</option>
                                 <option value="Chinoise">Chinoise</option>
                                 <option value="Indienne">Indienne</option>
-                                <option value="Autre">Autre</option>
+                                <option value="Autre">{% trans "Autre" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="langues_parles">Langues Parlés</label>
+                            <label for="langues_parles">{% trans "Langues Parlés" %}</label>
                             <select id="langues_parles" name="langues_parles">
                                 <option value="Malagasy">Malagasy</option>
                                 <option value="Français">Français</option>
@@ -777,7 +844,7 @@
                                 <option value="Arabe">Arabe</option>
                                 <option value="Hindi">Hindi</option>
                                 <option value="Portugais">Portugais</option>
-                                <option value="Autre">Autre</option>
+                                <option value="Autre">{% trans "Autre" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -790,11 +857,11 @@
                                 <option value="{{ additional_info.religion }}">Bouddhisme</option>
                                 <option value="{{ additional_info.religion }}">Spiritualité libre</option>
                                 <option value="{{ additional_info.religion }}">Athée</option>
-                                <option value="{{ additional_info.religion }}">Autre</option>
+                                <option value="{{ additional_info.religion }}">{% trans "Autre" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="signe_astrologique">Signe astrologique</label>
+                            <label for="signe_astrologique">{% trans "Signe astrologique" %}</label>
                             <!-- <input type="text" id="signe_astrologique" name="signe_astrologique" value="{{ additional_info.signe_astrologique }}"> -->
                             <select name="signe_astrologique" id="signe_astrologique">
                                 <option value="{{ additional_info.signe_astrologique }}">Bélier</option>
@@ -815,29 +882,29 @@
                         
                     </div>
                 </section>
-                <button type="submit" class="btn-submit">Enregistrer</button>
-                <button type="button" class="btn-close" id="btn-close-popup">Fermer</button>
+                <button type="submit" class="btn-submit">{% trans "Enregistrer" %}</button>
+                <button type="button" class="btn-close" id="btn-close-popup">{% trans "Fermer" %}</button>
             </form>
         </div>
     </div>
 
     <div class="popup-overlay" id="popup-modify-overlay">
         <div class="popup-content">
-            <h3>Modifier votre profil</h3>
+            <h3>{% trans "Modifier votre profil" %}</h3>
             <form action="{% url 'modifier_profil' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <section class="formul">
                     <div class="sous_formul">
                         <div class="form-group">
-                            <label for="pseudo">Pseudo</label>
+                            <label for="pseudo">{% trans "Pseudo" %}</label>
                             <input type="text" id="pseudo" name="pseudo" value="{{ membre.pseudo }}">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">{% trans "Email" %}</label>
                             <input type="email" id="email" name="email" value="{{ membre.email }}">
                         </div>
                         <div class="form-group">
-                            <label for="country">Pays</label>
+                            <label for="country">{% trans "Pays" %}</label>
                             <!-- <input type="text" id="country" name="country" value="{{ membre.country }}
                             "> -->
                                 <select name="country" id="country" class="form-input">
@@ -907,29 +974,29 @@
                                 </select>
                         </div>
                         <div class="form-group">
-                            <label for="city">Provinces</label>
+                            <label for="city">{% trans "Provinces" %}</label>
                             <!-- <input type="text" id="city" name="city" value="{{ membre.city }}"> -->
                             <select name="city" id="city" class="form-input">
-                                <option value="">Sélectionnez une ville</option>
+                                <option value="">{% trans "Sélectionnez une ville" %}</option>
                             </select>
                         </div>
                             
                         <div class="form-group">
-                            <label for="country">Lieux</label>
+                            <label for="country">{% trans "Lieux" %}</label>
                             <!-- <input type="text" id="country" name="ville" value="{{ membre.gender }}"> -->
                             <select name="lieux" id="lieux" class="form-input">
-                                <option value="">Sélectionnez un Lieux</option>
+                                <option value="">{% trans "Sélectionnez un Lieux" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="looking_for">Recherche</label>
+                            <label for="looking_for">{% trans "Recherche" %}</label>
                             <input type="text" id="looking_for" name="looking_for" value="{{ membre.looking_for }}">
                         </div>
                         <div class="form-group">
-                            <label for="" class="form-label">Age entre</label>
+                            <label for="" class="form-label">{% trans "Age entre" %}</label>
                             <div class="age">
                                 <div>
-                                    <label for="">debut :</label><br>
+                                    <label for="">{% trans "debut :" %}</label><br>
                                     <!-- <input type="number" name="age_debut" id="" min="18" value="{{membre.age_debut}}"> -->                      <select name="age_debut" class="form-input" required>
                                         <option value="18" {% if membre.age_debut == 18 %}selected{% endif %}>18</option>
                                         <option value="19" {% if membre.age_debut == 19 %}selected{% endif %}>19</option>
@@ -998,7 +1065,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="">fin :</label><br>
+                                    <label for="">{% trans "fin :" %}</label><br>
                                     <!-- <input type="number" name="age_fin" id="" value="{{membre.age_fin}}"> -->                               <select name="age_fin" class="form-input" required>
                                         <option value="18" {% if membre.age_fin == 18 %}selected{% endif %}>18</option>
                                         <option value="19" {% if membre.age_fin == 19 %}selected{% endif %}>19</option>
@@ -1081,35 +1148,35 @@
                     
                     <div class="sous_formul">
                         <div class="form-group">
-                            <label for="cheveux">Cheveux</label>
+                            <label for="cheveux">{% trans "Cheveux" %}</label>
                             <!-- <input type="text" id="cheveux" name="cheveux" value="{{ profil.cheveux }}"> -->                            <select class="form-control" name="cheveux" id="cheveux" required>
-                                <option value="">Couleur des cheveux</option>
-                                <option value="Blond" {% if profil.cheveux == "Blond" %}selected{% endif %}>Blond</option>
-                                <option value="Gris" {% if profil.cheveux == "Gris" %}selected{% endif %}>Gris</option>
-                                <option value="Marron" {% if profil.cheveux == "Marron" %}selected{% endif %}>Marron</option>
-                                <option value="Noir" {% if profil.cheveux == "Noir" %}selected{% endif %}>Noir</option>
-                                <option value="Je change souvent" {% if profil.cheveux == "Je change souvent" %}selected{% endif %}>Je change souvent</option>
-                                <option value="Châtain" {% if profil.cheveux == "Châtain" %}selected{% endif %}>Châtain</option>
-                                <option value="Autre" {% if profil.cheveux == "Autre" %}selected{% endif %}>Autre</option>
+                                <option value="">{% trans "Couleur des cheveux" %}</option>
+                                <option value="Blond" {% if profil.cheveux == "Blond" %}selected{% endif %}>{% trans "Blond" %}</option>
+                                <option value="Gris" {% if profil.cheveux == "Gris" %}selected{% endif %}>{% trans "Gris" %}</option>
+                                <option value="Marron" {% if profil.cheveux == "Marron" %}selected{% endif %}>{% trans "Marron" %}</option>
+                                <option value="Noir" {% if profil.cheveux == "Noir" %}selected{% endif %}>{% trans "Noir" %}</option>
+                                <option value="Je change souvent" {% if profil.cheveux == "Je change souvent" %}selected{% endif %}>{% trans "Je change souvent" %}</option>
+                                <option value="Châtain" {% if profil.cheveux == "Châtain" %}selected{% endif %}>{% trans "Châtain" %}</option>
+                                <option value="Autre" {% if profil.cheveux == "Autre" %}selected{% endif %}>{% trans "Autre" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="yeux">Yeux</label>
+                            <label for="yeux">{% trans "Yeux" %}</label>
                             <!-- <input type="text" id="yeux" name="yeux" value="{{ profil.yeux }}"> -->                            <select name="yeux" id="yeux" required>
-                                <option value="">Couleur des yeux</option>
-                                <option value="Bleu" {% if profil.yeux == "Bleu" %}selected{% endif %}>Bleu</option>
-                                <option value="Gris" {% if profil.yeux == "Gris" %}selected{% endif %}>Gris</option>
-                                <option value="Marron" {% if profil.yeux == "Marron" %}selected{% endif %}>Marron</option>
-                                <option value="Noir" {% if profil.yeux == "Noir" %}selected{% endif %}>Noir</option>
-                                <option value="Noisette" {% if profil.yeux == "Noisette" %}selected{% endif %}>Noisette</option>
-                                <option value="Vert" {% if profil.yeux == "Vert" %}selected{% endif %}>Vert</option>
-                                <option value="Autre" {% if profil.yeux == "Autre" %}selected{% endif %}>Autre</option>
+                                <option value="">{% trans "Couleur des yeux" %}</option>
+                                <option value="Bleu" {% if profil.yeux == "Bleu" %}selected{% endif %}>{% trans "Bleu" %}</option>
+                                <option value="Gris" {% if profil.yeux == "Gris" %}selected{% endif %}>{% trans "Gris" %}</option>
+                                <option value="Marron" {% if profil.yeux == "Marron" %}selected{% endif %}>{% trans "Marron" %}</option>
+                                <option value="Noir" {% if profil.yeux == "Noir" %}selected{% endif %}>{% trans "Noir" %}</option>
+                                <option value="Noisette" {% if profil.yeux == "Noisette" %}selected{% endif %}>{% trans "Noisette" %}</option>
+                                <option value="Vert" {% if profil.yeux == "Vert" %}selected{% endif %}>{% trans "Vert" %}</option>
+                                <option value="Autre" {% if profil.yeux == "Autre" %}selected{% endif %}>{% trans "Autre" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="taille">Taille (cm)</label>
+                            <label for="taille">{% trans "Taille (cm)" %}</label>
                             <!-- <input type="number" id="taille" name="taille" value="{{ profil.taille }}"> -->                            <select name="taille" id="taille" class="form-control" required>
-                                <option value="">Taille</option>
+                                <option value="">{% trans "taille" %}</option>
                                 <option value="100" {% if profil.taille == 100 %}selected{% endif %}>100 cm</option>
                                 <option value="105" {% if profil.taille == 105 %}selected{% endif %}>105 cm</option>
                                 <option value="110" {% if profil.taille == 110 %}selected{% endif %}>110 cm</option>
@@ -1138,17 +1205,17 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="poids">Poids (kg)</label>
+                            <label for="poids">{% trans "Poids (kg)" %}</label>
                             <input type="number" id="poids" name="poids" value="{{ profil.poids }}">
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
+                            <label for="description">{% trans "Description" %}</label>
                             <textarea id="description" name="description" rows="7" cols="30">{{ profil.description }}</textarea>
                         </div>
                     </div>
                 </section>
-                <button type="submit" class="btn-submit">Enregistrer</button>
-                <button type="button" class="btn-close" id="btn-close-modify-popup">Fermer</button>
+                <button type="submit" class="btn-submit">{% trans "Enregistrer" %}</button>
+                <button type="button" class="btn-close" id="btn-close-modify-popup">{% trans "Fermer" %}</button>
             </form>
         </div>
     </div>
@@ -1312,9 +1379,12 @@
             })
             .then(resp => resp.json())
             .then(data => {
+                console.log("Image supprimée avec succès.");
                 if (data.success) {
+                    location.reload(); 
                     btn.closest('div').remove(); // Supprime l'image ET le bouton corbeille ensemble
                     updateInputVisibility();
+                    
                 } else {
                     alert(data.error || "Erreur lors de la suppression.");
                 }
@@ -1816,6 +1886,25 @@ document.addEventListener('DOMContentLoaded', function () {
     countrySelect.addEventListener('change', updateCities);
     updateCities();
 });
+
+function togglePopup(btn, event) {
+    event.stopPropagation();
+    var popup = btn.parentNode.querySelector('.popup-effacer');
+    if (popup.style.display === 'block') {
+        popup.style.display = 'none';
+    } else {
+        document.querySelectorAll('.popup-effacer').forEach(function(p) { p.style.display = 'none'; });
+        popup.style.display = 'block';
+    }
+}
+window.addEventListener('click', function(e) {
+    document.querySelectorAll('.popup-effacer').forEach(function(popup) {
+        if (!popup.parentNode.contains(e.target)) {
+            popup.style.display = 'none';
+        }
+    });
+});
+
 </script>
     
 </section>
