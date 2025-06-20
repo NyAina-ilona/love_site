@@ -198,7 +198,7 @@
                 </div>
                 <div class="form-group">
                     <input type="checkbox" name="terms" id="terms" class="form-checkbox" required />
-                    <label for="terms" class="form-checkbox-label">{% trans "J'accepte les termes et" %} <a href="#" class="form-link">{% trans "les conditions générales d'utilisateur" %}</a>.</label>
+                    <label for="terms" class="form-checkbox-label">{% trans "J'accepte les termes et" %} <a href="{% url 'condition_util' %}" class="form-link">{% trans "les conditions générales d'utilisateur" %}</a>.</label>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" name="age" id="age" class="form-checkbox" required />
@@ -1011,7 +1011,7 @@ passwordInput.addEventListener('input', function() {
         .inscri_tete a{
             text-decoration: none;
             color: white;
-            font-size: 5vw;
+            font-size: 4vw;
         }
         @keyframes transform {
             from{

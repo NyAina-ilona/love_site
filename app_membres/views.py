@@ -217,16 +217,13 @@ def condition_admi(request):
     if not request.session.get("client"):
         return redirect('aff_login')
     membre_id = request.session.get("client", {}).get("id")
-    # Bloquer l'accès direct à condition_admi si déjà connecté et sur membres
-    referer = request.META.get('HTTP_REFERER', '')
-    if membre_id and ('membres' in referer or request.path == '/condition_admi/'):
-        return redirect('membres')
     from app_membres.models import Profil
-    profil_exists = False
-    if membre_id:
-        profil_exists = Profil.objects.filter(membre_id=membre_id).exists()
+    profil = Profil.objects.filter(membre_id=membre_id).first() if membre_id else None
+    # Si une image existe déjà dans le profil, ne pas retourner dans condition_admi
+    if profil and profil.images:
+        return redirect('membres')
+    profil_exists = bool(profil)
     if not profil_exists:
-        # Si le profil n'existe pas, forcer à rester sur cette page
         if request.path != '/condition_admi/':
             return redirect('condition_admi')
     if request.method == "POST":
@@ -295,6 +292,7 @@ def condition_admi(request):
 def membre_inscrit(request):
     if not request.session.get("client"):
         return redirect('aff_login')
+    # Si déjà connecté et sur la page membres, bloquer l'accès direct à attente_validation
 
     membre_id = request.session.get("client", {}).get("id")
     if not membre_id:
@@ -407,11 +405,15 @@ def mark_notifications_as_read(request):
     Notification.objects.filter(recipient=member, is_read=False).update(is_read=True)
     return JsonResponse({'success': True})
 
+
 def Attente_validation(request):
     membre_id = request.session.get("client", {}).get("id")
-    # Si déjà connecté et sur la page membres, bloquer l'accès direct à attente_validation
     referer = request.META.get('HTTP_REFERER', '')
-    if membre_id and ('membres' in referer or request.path == '/attente_validation/'):
+    # Si déjà connecté et sur la page membres, ou si une image existe dans Profil, bloquer l'accès à attente_validation
+    from app_membres.models import Profil
+    profil = Profil.objects.filter(membre_id=membre_id).first() if membre_id else None
+    # has_profile_image = bool(profil and profil.images)
+    if (profil.valider and ('membres' in referer or request.path == '/attente_validation/')):
         return redirect('membres')
     if not membre_id:
         return redirect('aff_login')
